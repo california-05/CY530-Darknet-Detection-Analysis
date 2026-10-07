@@ -18,11 +18,11 @@ from sklearn.metrics import (accuracy_score, precision_score, recall_score,
 from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
 
-# --- Load ---
+#Load
 df = pd.read_csv('dataset/darknet_dataset_processed_encoded.csv')
 print("Original shape:", df.shape)
 
-# --- Separate features and labels ---
+#Separate features and labels
 y = (df['Label'] == 'Darknet').astype(int)   # 1 = Darknet, 0 = Benign
 X = df.drop(columns=['Label', 'Label.1'])
 
@@ -31,18 +31,18 @@ X = X.select_dtypes(include=[np.number])
 print("Feature matrix:", X.shape)
 print("Class balance:", y.value_counts().to_dict())
 
-# --- Split ---
+#Split 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, stratify=y, random_state=42
 )
 print("Train:", X_train.shape, "Test:", X_test.shape)
 
-# --- Scale for MLP only (trees don't need it) ---
+#Scale for MLP only
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled  = scaler.transform(X_test)
 
-# --- Define models ---
+#Define models
 models = {
     'Decision Tree': (DecisionTreeClassifier(random_state=42), False),
     'Random Forest': (RandomForestClassifier(n_estimators=100, n_jobs=-1, random_state=42), False),
@@ -53,7 +53,7 @@ models = {
                                      early_stopping=True, random_state=42), True),
 }
 
-# --- Train + evaluate ---
+#Train + evaluate
 results = []
 for name, (model, needs_scaling) in models.items():
     print(f"\n=== {name} ===")
@@ -84,7 +84,7 @@ for name, (model, needs_scaling) in models.items():
     print(row)
     print(classification_report(y_test, y_pred, target_names=['Benign','Darknet']))
 
-# --- Summary table ---
+#Summary table
 results_df = pd.DataFrame(results)
 print("\n===== SUMMARY =====")
 print(results_df.to_string(index=False))
