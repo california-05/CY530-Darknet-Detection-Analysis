@@ -16,8 +16,6 @@ This repository contains the code and results for an analysis of five machine le
 
 All models are trained on the same encoded feature set, evaluated on the same stratified 80/20 train-test split, and compared across accuracy, precision, recall, F1 score, false positive rate (FPR), AUC, and training time.
 
-**Expected runtime:** approximately 90 seconds on a modern laptop.
-
 ## Expected Output
 
 The script produces `results_summary.csv` with the following table:
