@@ -48,5 +48,30 @@ The dataset is not included in this repository due to its size. Download `darkne
 - **UNB CIC:** https://www.unb.ca/cic/datasets/darknet2020.html
 - **Baseline repository:** https://github.com/mateuscmarim/Darknet-traffic-classification
 
-Place the file in the `dataset/` folder:
+Place the file in the `dataset/` folder
+
+## How to Run
+
+python run_experiments.py
+
+The script will:
+1. Load the encoded CSV
+2. Binarize the label (`Label` column: Benign = 0, Darknet = 1)
+3. Drop the multi-class label (`Label.1`) and non-numeric columns
+4. Split the data 80/20 with stratification
+5. Train all five models on the training set
+6. Evaluate on the test set
+7. Save `results_summary.csv` and print the summary table
+
+## Baseline Reference
+
+This study replicates and extends:
+
+> M. C. Marim, P. V. B. Ramos, A. B. Vieira, A. Galletta, M. Villari, R. M. de Oliveira, and E. F. Silva, "Darknet traffic detection and characterization with models based on decision trees and neural networks," *Intelligent Systems with Applications*, 2023.
+
+Baseline code: https://github.com/mateuscmarim/Darknet-traffic-classification
+
+## Dataset Reference
+
+> A. Habibi Lashkari, G. Kaur, and A. Rahali, "DIDarknet: A Contemporary Approach to Detect and Characterize the Darknet Traffic using Deep Image Learning," in *Proc. 10th Int. Conf. Communication and Network Security*, Tokyo, Japan, Nov. 2020.
 
