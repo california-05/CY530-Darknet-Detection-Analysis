@@ -1,0 +1,14 @@
+name: darknet-env
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - seaborn
+  - scikit-learn
+  - pandas
+  - matplotlib
+  - jupyter
+  - tqdm
+  - lightgbm
+  - xgboost
+prefix: C:\Users\calia\anaconda3\envs\darknet-env
